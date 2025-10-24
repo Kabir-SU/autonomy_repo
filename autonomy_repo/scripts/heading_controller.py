@@ -7,17 +7,24 @@ from asl_tb3_lib.math_utils import wrap_angle
 from asl_tb3_msgs.msg import TurtleBotControl, TurtleBotState
 
 class HeadingController(BaseHeadingController):
-    def __init__(self):
-        super().__init__()
+
+    def __init__(self, node_name = "heading_controller"):
+        super().__init__(node_name)
         # Proportional gain
-        self.kp = 2.0
-        
+        self.declare_parameter("kp", 2.0)
+
+
+    @property
+    def get_kp(self) -> float:
+        return(self.get_parameter("kp")).value
+    
+
     def compute_control_with_goal(
             self,
             current_state: TurtleBotState,
             desired_state: TurtleBotState) -> TurtleBotControl:
         proportional_error = desired_state.theta - current_state.theta
-        desired_omega = self.kp * wrap_angle(proportional_error)
+        desired_omega = self.get_kp * wrap_angle(proportional_error)
         message = TurtleBotControl()
         message.omega = desired_omega
         return message

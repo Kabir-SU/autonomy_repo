@@ -12,7 +12,7 @@ from asl_tb3_lib.math_utils import wrap_angle
 
 
 class PlottingNode(Node):
-    def __init__(self, des_angle=1.274, total_msg_cnt=800):
+    def __init__(self, des_angle=1.274, total_msg_cnt=1600):
         super().__init__("plot_node")
         
         self.goal = des_angle
@@ -60,7 +60,7 @@ class PlottingNode(Node):
         ax.set_xlabel("Time (s)")
         ax.set_ylabel("Theta")
         fig.legend()
-        filename = Path("src/autonomy_repo/plots/p3_output.png")
+        filename = Path("src/autonomy_repo/autonomy_repo/plots/p3_output.png")
         try:
             fig.savefig(filename)  # save the figure to file
         except OSError as e:
