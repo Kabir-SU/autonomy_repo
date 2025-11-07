@@ -22,7 +22,7 @@ def generate_launch_description():
     state_publisher = Node(
         package='asl_tb3_lib',
         executable='state_publisher.py',
-        parameters=[{"use_sim_time": True}]
+        parameters=[{"use_sim_time": False}]
     )
     
     rviz_launch = IncludeLaunchDescription(
@@ -35,7 +35,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             'config': rviz_config,
-            'use_sim_time': 'true'
+            'use_sim_time': 'False'
         }.items(),
     )
 
