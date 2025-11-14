@@ -13,7 +13,7 @@ class HeadingController(BaseHeadingController):
         
         # Call parent init
         super().__init__()
-        self.kp = 100
+        self.kp = 10
 
     def compute_control_with_goal(self, state: TurtleBotState, goal: TurtleBotState):
         
