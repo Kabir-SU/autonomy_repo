@@ -21,6 +21,8 @@ class PerceptionController(BaseHeadingController):
         self.image_detected = False
         
         self.detector_bool = self.create_subscription(Bool, "/detector_bool", self.gay, 10)
+
+        self.create_publisher(Bool, )
                 
     def gay(self, msg:  Bool) -> None:
         if msg.data:

@@ -10,7 +10,17 @@ def generate_launch_description():
     
     navigator_node = Node(
         package='autonomy_repo',
+        executable='navigator.py',
+    )
+
+    exploration_node = Node(
+        package='autonomy_repo',
         executable='exploration.py',
+    )
+
+    detector_node = Node(
+        package='autonomy_repo',
+        executable='perception_controller.py',
     )
     
     rviz_goal_relay = Node(
@@ -43,5 +53,7 @@ def generate_launch_description():
         rviz_goal_relay,
         state_publisher,
         navigator_node,
+        exploration_node,
+        # detector_node,
         rviz_launch,
     ])
