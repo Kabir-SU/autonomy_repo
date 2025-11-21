@@ -14,6 +14,7 @@ install(PROGRAMS
     scripts/navigator.py
     scripts/p3_plot.py
     scripts/perception_controller.py
+    scripts/exploration.py
     DESTINATION lib/${PROJECT_NAME}
 )
 

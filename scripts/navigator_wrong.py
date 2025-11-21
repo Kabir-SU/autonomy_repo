@@ -15,7 +15,7 @@ from asl_tb3_msgs.msg import TurtleBotControl, TurtleBotState
 
 
 class NavigatorNode(BaseNavigator):
-    def __init__(self, kp=2.0, kpx=1.0, kpy=1.0, kdx=1.0, kdy=1.0) -> None:
+    def __init__(self, kp=2.0, kpx=2.0, kpy=2.0, kdx=2.0, kdy=2.0) -> None:
         # give it a default node name
         super().__init__("navigator_node")
         self.kp = kp
@@ -25,7 +25,7 @@ class NavigatorNode(BaseNavigator):
         self.kdx = kdx
         self.kdy = kdy
         
-        self.V_PREV_THRESH = 0.005
+        self.V_PREV_THRESH = 0.0001
         self.t_prev = 0.0
         self.V_prev = 0.01
         self.om_prev = 0.0
@@ -115,7 +115,7 @@ class NavigatorNode(BaseNavigator):
         self.om_prev = 0.0
         
         path = np.asarray(astar.path)
-        v_desired = 0.1
+        v_desired = 0.5
 
         path_diffs = np.diff(path, axis=0)
         path_distances = np.linalg.norm(path_diffs, axis=1)
