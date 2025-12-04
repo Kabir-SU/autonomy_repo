@@ -75,7 +75,7 @@ class FrontierExplorerNode(Node):
         )
 
 
-        # self.detected = False
+        self.detected = False
 
         self.goal_pub = self.create_publisher(
             TurtleBotState,
@@ -175,18 +175,18 @@ class FrontierExplorerNode(Node):
 
     def stop_callback(self, msg: Bool):
         if msg.data and not self.exploration_stopped:
-            # self.exploration_stopped = True
+            
             time.sleep(5)
             self.get_logger().info("Stop sign detected. Stopping.")
-            self.stopped = True
+            self.exploration_stopped = True
 
-    self.stop_delay = False
+        self.stop_delay = False
 
-    def reset_callback():
+    def reset_callback(self):
         self.stop_delay = False
       
-    timer = self.create_timer(5.0, reset_callback)
-    timer.cancel()
+    # timer = self.create_timer(5.0, reset_callback)
+    # timer.cancel()
 
     # ----------------------------------------------------------------------
     # Exploration logic
@@ -207,6 +207,7 @@ class FrontierExplorerNode(Node):
         if target is None:
             self.get_logger().info("No more frontier targets. Exploration complete.")
             self.try_explore()
+            # return
 
         tx, ty = target
 
